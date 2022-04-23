@@ -1,0 +1,88 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+:root {
+	--sizeOfCube: 400px;
+	--positiveOffset: calc(var(--sizeOfCube) / 2);
+	--negativeOffset: calc(-1 * var(--positiveOffset));
+	--perspective: 500px;
+	--defaultBorder: 5px solid white;
+}
+
+html {
+	font-family: monospace;
+	user-select: none;
+}
+
+.wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	background-color: black;
+	overflow: hidden;
+}
+
+.container {
+	width: var(--sizeOfCube);
+	height: var(--sizeOfCube);
+	position: relative;
+	perspective: var(--perspective);
+}
+
+.cube {
+	width: inherit;
+	height: inherit;
+	transform-style: preserve-3d;
+	transform: translate3d(0px, 0px, 0px) rotateX(0deg) rotateZ(0deg);
+}
+
+.side {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	border: var(--defaultBorder);
+}
+
+.front {
+	transform: translateZ(var(--positiveOffset));
+}
+
+.back {
+	transform: translateZ(var(--negativeOffset));
+}
+
+.left {
+	transform: rotateY(90deg) translateZ(var(--negativeOffset));
+}
+
+.right {
+	transform: rotateY(-90deg) translateZ(var(--negativeOffset));
+}
+
+.top {
+	transform: rotateX(90deg) translateZ(var(--positiveOffset));
+}
+
+.bottom {
+	transform: rotateX(90deg) translateZ(var(--negativeOffset));
+}
+
+
+.settings {
+	position: absolute;
+	right: 0;
+	top: 0;
+	padding: 5px;
+	background-color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 5px;
+}
