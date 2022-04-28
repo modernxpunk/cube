@@ -5,16 +5,11 @@
 }
 
 :root {
-	--sizeOfCube: 400px;
+	--sizeOfCube: 200px;
 	--positiveOffset: calc(var(--sizeOfCube) / 2);
 	--negativeOffset: calc(-1 * var(--positiveOffset));
 	--perspective: 500px;
 	--defaultBorder: 5px solid white;
-}
-
-html {
-	font-family: monospace;
-	user-select: none;
 }
 
 .wrapper {
@@ -37,7 +32,16 @@ html {
 	width: inherit;
 	height: inherit;
 	transform-style: preserve-3d;
-	transform: translate3d(0px, 0px, 0px) rotateX(0deg) rotateZ(0deg);
+	animation: 13s linear infinite rotationCube;
+}
+
+@keyframes rotationCube {
+	from {
+		transform: rotateX(0deg) rotateY(0deg);
+	}
+	to {
+		transform: rotateX(360deg) rotateY(360deg);
+	}
 }
 
 .side {
@@ -48,6 +52,13 @@ html {
 	height: 100%;
 	position: absolute;
 	border: var(--defaultBorder);
+	background-color: red;
+	transition: .3s;
+}
+
+.side:hover {
+	transition: .3s;
+	background-color: green;
 }
 
 .front {
@@ -72,17 +83,4 @@ html {
 
 .bottom {
 	transform: rotateX(90deg) translateZ(var(--negativeOffset));
-}
-
-
-.settings {
-	position: absolute;
-	right: 0;
-	top: 0;
-	padding: 5px;
-	background-color: white;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	border-radius: 5px;
 }
