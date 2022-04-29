@@ -5,11 +5,20 @@
 }
 
 :root {
-	--sizeOfCube: 200px;
-	--positiveOffset: calc(var(--sizeOfCube) / 2);
-	--negativeOffset: calc(-1 * var(--positiveOffset));
+	--sizeOfCube: 300px;
 	--perspective: 500px;
-	--defaultBorder: 5px solid white;
+	--margin: 80%;
+}
+
+html {
+	font-size: 24px;
+	font-family: monospace;
+}
+
+input, input::placeholder {
+	font-size: inherit;
+	color: inherit;
+	font-family: inherit;
 }
 
 .wrapper {
@@ -19,29 +28,39 @@
 	min-height: 100vh;
 	background-color: black;
 	overflow: hidden;
+	background-color: #282a36;
 }
 
 .container {
 	width: var(--sizeOfCube);
 	height: var(--sizeOfCube);
-	position: relative;
 	perspective: var(--perspective);
+	position: relative;
 }
 
 .cube {
-	width: inherit;
-	height: inherit;
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
 	transform-style: preserve-3d;
 	animation: 13s linear infinite rotationCube;
 }
 
-@keyframes rotationCube {
-	from {
-		transform: rotateX(0deg) rotateY(0deg);
-	}
-	to {
-		transform: rotateX(360deg) rotateY(360deg);
-	}
+.container > .cube {
+	transform: rotateX(-45deg) rotateY(35deg);
+
+}
+
+.cube > .cube:hover {
+	transform: translateY(-30%);
+}
+
+.sub {
+	width: var(--margin);
+	height: var(--margin);
+
+	transition: .2s;
 }
 
 .side {
@@ -51,36 +70,46 @@
 	width: 100%;
 	height: 100%;
 	position: absolute;
-	border: var(--defaultBorder);
-	background-color: red;
 	transition: .3s;
+	user-select: none;
+	transition: all 200ms ease-in;
+	background-color: #383a59;
+	border: 5px solid #bd93f9;
 }
-
 .side:hover {
-	transition: .3s;
-	background-color: green;
+	box-shadow: inset 0px 0px 20px 5px #bd93f9;
 }
 
 .front {
-	transform: translateZ(var(--positiveOffset));
+	transform: rotateY(-90deg) translateX(50%) rotateY(90deg);
 }
-
 .back {
-	transform: translateZ(var(--negativeOffset));
+	transform: rotateY(-90deg) translateX(-50%) rotateY(90deg);
 }
-
 .left {
-	transform: rotateY(90deg) translateZ(var(--negativeOffset));
+	transform: rotateY(90deg) rotateY(-90deg) translateX(-50%) rotateY(90deg);
 }
-
 .right {
-	transform: rotateY(-90deg) translateZ(var(--negativeOffset));
+	transform: rotateY(-90deg) rotateY(-90deg) translateX(-50%) rotateY(90deg);
 }
-
 .top {
-	transform: rotateX(90deg) translateZ(var(--positiveOffset));
+	transform: rotateX(90deg) rotateY(-90deg) translateX(-50%) rotateY(90deg);
+}
+.bottom {
+	transform: rotateX(90deg) rotateY(-90deg) translateX(-50%) rotateY(90deg);
 }
 
-.bottom {
-	transform: rotateX(90deg) translateZ(var(--negativeOffset));
+
+.settings {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	background-color: white;
+}
+
+.settings > div {
+	padding: 10px;
 }

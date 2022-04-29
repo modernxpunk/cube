@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
+	<title>Cube3d</title>
 	<link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -14,9 +14,40 @@
 				<div class="side back"></div>
 				<div class="side left"></div>
 				<div class="side right"></div>
-				<div class="side top"></div>
 				<div class="side bottom"></div>
-			</div>			
+				<div class="sub cube">
+					<div class="side front"></div>
+					<div class="side back"></div>
+					<div class="side left"></div>
+					<div class="side right"></div>
+					<div class="side bottom"></div>
+					<div class="sub cube">
+						<div class="side front"></div>
+						<div class="side back"></div>
+						<div class="side left"></div>
+						<div class="side right"></div>
+						<div class="side bottom"></div>
+					</div>
+				</div>
+			</div>	
+		</div>
+		<div class="settings">
+			<div class="setting">
+				<label for="size">Size of cube</label>
+				<input type="range" value="300" name="sizeOfCube" min="10" max="1000">
+			</div>
+			<div class="setting">
+				<label for="perspective">Perspective</label>
+				<input type="range" value="500" name="perspective" min="100" max="600">
+			</div>
+			<div class="setting">
+				<label for="margin">Margin</label>
+				<input type="range" value="80" name="margin" min="1" max="99">
+			</div>
+			<div class="setting">
+				<label for="count">Count</label>
+				<input type="range" value="3" name="count" min="0" max="100">
+			</div>
 		</div>
 	</div>
 	<script type="text/javascript" src="script.js"></script>
